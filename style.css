@@ -48,6 +48,7 @@ body {
   line-height: 1.6;
   transition: background-color 0.2s ease, color 0.2s ease;
   -webkit-font-smoothing: antialiased;
+  cursor: url('pencil_32x32.svg') 0 32, auto;
 }
 
 /* =========================================
@@ -123,7 +124,7 @@ button {
   border-radius: var(--radius);
   padding: 1rem;
   box-shadow: var(--shadow);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 textarea {
@@ -169,6 +170,13 @@ kbd {
   padding: 0.1rem 0.35rem;
   font-size: 0.75rem;
   font-family: inherit;
+}
+
+/* Import / Export buttons */
+.data-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
 }
 
 /* =========================================
@@ -249,4 +257,146 @@ kbd {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
+}
+
+/* =========================================
+   8. Scroll To Top Button
+   ========================================= */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--accent);
+  color: #ffffff;
+  font-size: 1.3rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease,
+              visibility 0.2s ease, background-color 0.15s ease;
+}
+
+.scroll-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* =========================================
+   9. Image Attachments
+   ========================================= */
+.image-preview {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 0.75rem;
+}
+
+.image-preview img {
+  display: block;
+  max-width: 100%;
+  max-height: 260px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: crosshair;
+}
+
+.image-preview::after {
+  content: '📌 Click the image to add a note';
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.remove-image-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.image-wrap {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 0.75rem;
+}
+
+.problem-image {
+  display: block;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* =========================================
+   10. Image Pins (notes on images)
+   ========================================= */
+.pin {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  background: #f59e0b;
+  color: #1f2937;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.pin-note {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) rotate(-2deg);
+  width: max-content;
+  max-width: 200px;
+  padding: 0.45rem 0.65rem;
+  background: #fef08a;
+  color: #1f2937;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: left;
+  white-space: pre-wrap;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  display: none;
+  z-index: 5;
+}
+
+.pin:hover .pin-note,
+.pin.open .pin-note {
+  display: block;
 }
