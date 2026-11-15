@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stuck Problems</title>
+  <title>TOUCH THE SKY</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <!-- Prevents white flash on reload when dark mode is active -->
   <script>
@@ -21,7 +24,7 @@
   <div class="container">
     <header class="app-header">
       <div>
-        <h1>Stuck Problems</h1>
+        <h1>TOUCH THE SKY</h1>
         <p class="subtitle" id="problem-count">0 problems saved</p>
       </div>
       <button type="button" id="theme-toggle" class="btn-ghost" aria-label="Toggle color theme">
@@ -37,23 +40,37 @@
             id="problem-input"
             rows="4"
             placeholder="Write or paste the problem you're stuck on..."
-            required
           ></textarea>
 
+          <div id="image-preview" class="image-preview hidden">
+            <img id="preview-img" alt="Selected image preview" />
+            <button type="button" id="remove-image-btn" class="remove-image-btn" aria-label="Remove image">×</button>
+          </div>
+
           <div class="composer-footer">
-            <span class="hint">Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to save</span>
+            <input type="file" id="image-input" accept="image/*" hidden />
+            <button type="button" id="attach-btn" class="btn-ghost">📎 Add image</button>
+            <span class="hint">Press <kbd>Shift</kbd> + <kbd>Enter</kbd> to save</span>
             <button type="submit" class="btn-primary">Save Problem</button>
           </div>
         </form>
       </section>
 
+      <div class="data-actions">
+        <button type="button" id="export-btn" class="btn-ghost">⬇ Export data</button>
+        <button type="button" id="import-btn" class="btn-ghost">⬆ Import data</button>
+        <input type="file" id="import-input" accept=".json,application/json" hidden />
+      </div>
+
       <section class="feed" aria-label="Saved problems">
         <p id="empty-state" class="empty-state">
-          No stuck problems yet. Write one above when you hit a wall.
+          No TOUCH THE SKY yet. Write one above when you hit a wall.
         </p>
         <ul id="problem-list" class="problem-list"></ul>
       </section>
     </main>
   </div>
+
+  <button type="button" id="scroll-top-btn" class="scroll-top-btn" aria-label="Back to top" title="Back to top">↑</button>
 </body>
 </html>
