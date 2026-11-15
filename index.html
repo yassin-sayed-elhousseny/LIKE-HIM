@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stuck Problems</title>
+
+  <!-- Prevents white flash on reload when dark mode is active -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem('stuck_theme_v1');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme = saved || (prefersDark ? 'dark' : 'light');
+    })();
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header class="app-header">
+      <div>
+        <h1>Stuck Problems</h1>
+        <p class="subtitle" id="problem-count">0 problems saved</p>
+      </div>
+      <button type="button" id="theme-toggle" class="btn-ghost" aria-label="Toggle color theme">
+        Dark Mode
+      </button>
+    </header>
+
+    <main>
+      <section class="composer" aria-label="Add a new problem">
+        <form id="problem-form">
+          <label for="problem-input" class="sr-only">Write the problem you are stuck on</label>
+          <textarea
+            id="problem-input"
+            rows="4"
+            placeholder="Write or paste the problem you're stuck on..."
+            required
+          ></textarea>
+
+          <div class="composer-footer">
+            <span class="hint">Press <kbd>Ctrl</kbd> + <kbd>Enter</kbd> to save</span>
+            <button type="submit" class="btn-primary">Save Problem</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="feed" aria-label="Saved problems">
+        <p id="empty-state" class="empty-state">
+          No stuck problems yet. Write one above when you hit a wall.
+        </p>
+        <ul id="problem-list" class="problem-list"></ul>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
